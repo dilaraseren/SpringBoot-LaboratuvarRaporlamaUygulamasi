@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LABSOFT</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>LABSOFT MANAGEMENT SYSTEM</h1>
+    <hr>
+    <h2>Save Laborant</h2>
+
+    <form action="#" th:action="@{/saveLaborant}" th:object="${laborant}"
+          method="post">
+        <input type="text" th:field="*{name}"
+               placeholder="Laborant First Name" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{surname}"
+               placeholder="Laborant Last Name" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{hospitalNumber}"
+               placeholder="Laborant Hospital Number" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2">SAVE LABORANT</button>
+
+        <a th:href ="@{/}" class="btn btn-primary"> Back to Laborant List</a>
+    </form>
+</div>
+</body>
+</html>

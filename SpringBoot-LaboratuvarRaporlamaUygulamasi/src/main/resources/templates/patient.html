@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LABSOFT</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+
+    <h1>Patient List</h1>
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Patient First Name</th>
+            <th>Patient Last Name</th>
+            <th>Patient Hospital Number </th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient:${listPatients}">
+            <td th:text="${patient.name}"></td>
+            <td th:text="${patient.surname}"></td>
+            <td th:text="${patient.nationalIdentity}"></td>
+            <td> <a th:href="@{/showFormForUpdate/{id}(id=${patient.id})}" class="btn btn-primary"> Update</a></td>
+            <td> <a th:href="@{/deletePatient/{id}(id=${patient.id})}" class="btn btn-danger "> Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/showNewLaborantForm}" class="btn btn-primary btn-sm mb-3"> Add Patient </a>
+</div>
+</body>
+</html>
