@@ -12,8 +12,8 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number")
-    private UUID number;
+    @Column(name = "report_number")
+    private Long reportNumber;
 
     @Column(name = "illnes_title")
     private String illnesTitle;
@@ -23,6 +23,22 @@ public class Report {
 
     @Column(name = "date")
     private String date;
+
+    public Laborant getLaborant() {
+        return laborant;
+    }
+
+    public void setLaborant(Laborant laborant) {
+        this.laborant = laborant;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
 
     @Column(name = "folder_path")
     private String folderPath;
@@ -43,12 +59,12 @@ public class Report {
         this.id = id;
     }
 
-    public UUID getNumber() {
-        return number;
+    public Long getReportNumber() {
+        return reportNumber;
     }
 
-    public void setNumber(UUID number) {
-        this.number = number;
+    public void setReportNumber(Long reportNumber) {
+        this.reportNumber = reportNumber;
     }
 
     public String getIllnesTitle() {

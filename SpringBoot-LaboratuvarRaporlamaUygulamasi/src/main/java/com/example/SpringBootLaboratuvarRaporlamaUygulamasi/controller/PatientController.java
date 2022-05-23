@@ -13,7 +13,7 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    @GetMapping("/")
+    @GetMapping("/patient")
     public String viewHomePage(Model model){
         model.addAttribute("listPatients",patientService.getAllPatients());
         return "patient";

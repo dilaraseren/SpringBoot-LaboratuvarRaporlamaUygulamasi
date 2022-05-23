@@ -33,7 +33,7 @@ public class LaborantController {
     @PostMapping("/saveLaborant")
     public String saveLaborant(@ModelAttribute("laborant") Laborant laborant){
         laborantService.saveLaborants(laborant);
-        return "laborant";
+        return "redirect:/";
     }
 
     @GetMapping("/showFormForUpdateLaborant/{id}")
