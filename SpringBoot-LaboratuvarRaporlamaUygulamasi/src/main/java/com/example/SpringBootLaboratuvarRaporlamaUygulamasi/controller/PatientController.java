@@ -29,7 +29,7 @@ public class PatientController {
     @PostMapping("/savePatient")
     public String savePatient(@ModelAttribute("patient") Patient patient){
         patientService.savePatients(patient);
-        return "redirect:/";
+        return "redirect:/patient";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
@@ -43,7 +43,7 @@ public class PatientController {
     @GetMapping("/deletePatient/{id}")
     public String deletePatient(@PathVariable(value = "id") long id){
         this.patientService.deletePatientById(id);
-        return "redirect:/";
+        return "redirect:/patient";
 
     }
 }

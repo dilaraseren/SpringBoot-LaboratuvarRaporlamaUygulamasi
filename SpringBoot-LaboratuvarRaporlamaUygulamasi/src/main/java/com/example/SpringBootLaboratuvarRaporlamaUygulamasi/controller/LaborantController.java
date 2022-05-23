@@ -33,7 +33,7 @@ public class LaborantController {
     @PostMapping("/saveLaborant")
     public String saveLaborant(@ModelAttribute("laborant") Laborant laborant){
         laborantService.saveLaborants(laborant);
-        return "redirect:/";
+        return "redirect:/laborant";
     }
 
     @GetMapping("/showFormForUpdateLaborant/{id}")
@@ -46,7 +46,7 @@ public class LaborantController {
     @GetMapping("/deleteLaborant/{id}")
     public String deleteLaborant(@PathVariable(value = "id") long id){
         this.laborantService.deleteLaborantById(id);
-        return "redirect:/";
+        return "redirect:/laborant";
 
     }
 }

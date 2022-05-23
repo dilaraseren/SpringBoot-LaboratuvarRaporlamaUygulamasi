@@ -16,7 +16,7 @@ public class PatientManager implements PatientService {
     private PatientRepository patientRepository;
     @Override
     public List<Patient> getAllPatients() {
-        return patientRepository.findAll();
+        return patientRepository.findAllPatient();
     }
 
     @Override
@@ -39,6 +39,7 @@ public class PatientManager implements PatientService {
 
     @Override
     public void deletePatientById(long id) {
-        this.patientRepository.deleteById(id);
+
+        this.patientRepository.deletePatientById(id);
     }
 }

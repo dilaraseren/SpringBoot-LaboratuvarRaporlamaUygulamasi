@@ -13,11 +13,23 @@ public class Laborant {
     @Column(name = "name")
     private String name;
 
+
     @Column(name = "surname")
     private String surname;
 
     @Column(name = "hospital_number")
     private Long hospitalNumber;
+
+    @Column(name = "is_Active")
+    private boolean isActive;
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     public Long getId() {
         return id;

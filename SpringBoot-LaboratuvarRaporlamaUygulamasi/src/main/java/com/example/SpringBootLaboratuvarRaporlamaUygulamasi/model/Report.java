@@ -1,6 +1,7 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -21,8 +22,27 @@ public class Report {
     @Column(name = "illnes_description")
     private String illnesDescription;
 
-    @Column(name = "date")
-    private String date;
+    @Column(name = "is_Active")
+    private boolean isActive;
+
+    @Column(name = "report_date")
+    private Date reportDate;
+
+    public Date getReportDate() {
+        return reportDate;
+    }
+
+    public void setReportDate(Date reportDate) {
+        this.reportDate = reportDate;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     public Laborant getLaborant() {
         return laborant;
@@ -81,14 +101,6 @@ public class Report {
 
     public void setIllnesDescription(String illnesDescription) {
         this.illnesDescription = illnesDescription;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getFolderPath() {

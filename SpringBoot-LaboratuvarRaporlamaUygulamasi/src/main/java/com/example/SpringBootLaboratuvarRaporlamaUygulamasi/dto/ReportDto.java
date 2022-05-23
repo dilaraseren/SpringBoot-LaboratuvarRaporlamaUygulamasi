@@ -1,5 +1,7 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto;
 
+import java.util.Date;
+
 public class ReportDto {
 
     private String illnesTitle;
@@ -7,11 +9,20 @@ public class ReportDto {
     private String date;
     private String folderPath;
     private Long reportNumber;
-    private long  laborantId;
+    private Date reportDate;
+    private long laborantId;
     private long patientId;
 
     public Long getReportNumber() {
         return reportNumber;
+    }
+
+    public Date getReportDate() {
+        return reportDate;
+    }
+
+    public void setReportDate(Date reportDate) {
+        this.reportDate = reportDate;
     }
 
     public void setReportNumber(Long reportNumber) {
