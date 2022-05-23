@@ -6,7 +6,6 @@ public class ReportDto {
 
     private String illnesTitle;
     private String illnesDescription;
-    private String date;
     private String folderPath;
     private Long reportNumber;
     private Date reportDate;
@@ -51,14 +50,6 @@ public class ReportDto {
 
     public void setIllnesDescription(String illnesDescription) {
         this.illnesDescription = illnesDescription;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
 

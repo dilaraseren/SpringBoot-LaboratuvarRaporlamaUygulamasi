@@ -12,4 +12,9 @@ public class HomeController {
     public String home(){
         return "home";
     }
+
+    @GetMapping("/not-auth")
+    public String getAccessDenied() {
+        return "/not-auth";
+    }
 }

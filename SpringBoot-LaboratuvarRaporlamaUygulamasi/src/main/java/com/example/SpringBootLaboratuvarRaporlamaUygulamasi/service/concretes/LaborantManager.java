@@ -17,7 +17,7 @@ public class LaborantManager implements LaborantService {
 
     @Override
     public List<Laborant> getAllLaborants() {
-        return laborantRepository.findAll();
+        return laborantRepository.findAllLaborant();
     }
 
     @Override
@@ -40,6 +40,6 @@ public class LaborantManager implements LaborantService {
 
     @Override
     public void deleteLaborantById(long id) {
-    this.laborantRepository.deleteById(id);
+    this.laborantRepository.deleteLaborantById(id);
     }
 }
