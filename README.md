@@ -1,5 +1,4 @@
-# SpringBoot-LaboratuvarRaporlamaUygulamasi
-Özgür Yazılım Staj Projesi
+# Laboratuvar Raporlama Uygulaması
 
 
 
