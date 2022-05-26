@@ -33,6 +33,11 @@ public class ReportManager implements ReportService
     }
 
     @Override
+    public List<Report> listDateReport() {
+        return this.reportRepository.listDateReport();
+    }
+
+    @Override
     public Report saveReports(ReportDto reportDto) {
         Report report = new Report();
         Patient patient = this.patientService.getPatientById(reportDto.getPatientId());

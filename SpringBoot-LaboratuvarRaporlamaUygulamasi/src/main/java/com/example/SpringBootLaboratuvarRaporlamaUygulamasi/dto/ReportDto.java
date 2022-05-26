@@ -9,8 +9,19 @@ public class ReportDto {
     private String folderPath;
     private Long reportNumber;
     private Date reportDate;
+    private long imageId;
+
     private long laborantId;
     private long patientId;
+
+
+    public long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(long imageId) {
+        this.imageId = imageId;
+    }
 
     public Long getReportNumber() {
         return reportNumber;

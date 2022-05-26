@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ReportService {
     List<Report> getAllReports();
+    List<Report> listDateReport();
     Report saveReports(ReportDto reportDto);
 
     Report getReportById(long id);

@@ -11,6 +11,15 @@ public class ReportUpdateDto {
     private String folderPath;
     private Long reportNumber;
     private Date reportDate;
+    private long imageId;
+
+    public long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(long imageId) {
+        this.imageId = imageId;
+    }
 
     public long getId() {
         return id;

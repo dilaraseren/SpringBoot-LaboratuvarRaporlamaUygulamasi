@@ -42,4 +42,5 @@ public class PatientManager implements PatientService {
 
         this.patientRepository.deletePatientById(id);
     }
+
 }

@@ -28,6 +28,21 @@ public class Report {
     @Column(name = "report_date")
     private Date reportDate;
 
+    @Column(name = "folder_path")
+    private String folderPath;
+
+    @ManyToOne
+    @JoinColumn(name = "laborantId")
+    private Laborant laborant;
+
+    @ManyToOne
+    @JoinColumn(name = "patientId")
+    private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name = "imageId")
+    private Image image;
+
     public Date getReportDate() {
         return reportDate;
     }
@@ -59,17 +74,6 @@ public class Report {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-
-    @Column(name = "folder_path")
-    private String folderPath;
-
-    @ManyToOne
-    @JoinColumn(name = "laborantId")
-    private Laborant laborant;
-
-    @ManyToOne
-    @JoinColumn(name = "patientId")
-    private Patient patient;
 
     public Long getId() {
         return id;
