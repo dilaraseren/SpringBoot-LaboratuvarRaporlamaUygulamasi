@@ -4,11 +4,14 @@ import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.User;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.UserRepository;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserManager implements UserService {
 
     @Autowired
     private UserRepository userRepository ;
+
     @Override
     public User login(String username, String password) {
         User user = userRepository.findByUsernameAndPassword(username,password);

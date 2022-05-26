@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Controller
 @CrossOrigin("*")
 public class ImageController {
+
     @Autowired
     private FileStorageManager storageManager ;
     @PostMapping("/upload")
