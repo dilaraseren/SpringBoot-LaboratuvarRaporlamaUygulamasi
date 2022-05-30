@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping("/")
     public ModelAndView login() {
-        ModelAndView mav = new ModelAndView("patient");
+        ModelAndView mav = new ModelAndView("login");
         mav.addObject("user", new User());
         return mav;
     }

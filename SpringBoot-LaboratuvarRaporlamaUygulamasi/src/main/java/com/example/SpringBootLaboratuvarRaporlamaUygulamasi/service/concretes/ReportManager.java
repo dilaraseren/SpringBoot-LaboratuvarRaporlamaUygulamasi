@@ -1,10 +1,15 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.concretes;
 
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto.ReportDto;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Image;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Laborant;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Report;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.ImageRepository;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.LaborantRepository;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.PatientRepository;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.ReportRepository;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.ImageService;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.LaborantService;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.PatientService;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.ReportService;
@@ -14,17 +19,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ReportManager implements ReportService
-{
+public class ReportManager implements ReportService {
 
     @Autowired
-    private ReportRepository reportRepository ;
+    private ReportRepository reportRepository;
 
     @Autowired
-    private PatientService patientService;
+    private PatientRepository patientRepository;
 
     @Autowired
-    private LaborantService laborantService;
+    private LaborantRepository laborantRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
 
 
     @Override
@@ -37,42 +44,28 @@ public class ReportManager implements ReportService
         return this.reportRepository.listDateReport();
     }
 
-    @Override
-    public Report saveReports(ReportDto reportDto) {
-        Report report = new Report();
-        Patient patient = this.patientService.getPatientById(reportDto.getPatientId());
-        Laborant laborant = this.laborantService.getLaborantById(reportDto.getLaborantId());
 
-        if (patient != null && laborant != null) {
-            report.setReportDate(reportDto.getReportDate());
-            report.setIllnesTitle(reportDto.getIllnesTitle());
-            report.setLaborant(laborant);
-            report.setReportNumber(reportDto.getReportNumber());
-            report.setPatient(patient);
-            report.setIllnesDescription(reportDto.getIllnesDescription());
-            report.setFolderPath(reportDto.getFolderPath());
-        } else {
-            return null;
-        }
-        return this.reportRepository.save(report);
+    @Override
+    public Report saveReports(Report report) {
+        System.out.println("report: "+report);
+
+        return reportRepository.save(report);
     }
 
     @Override
     public Report getReportById(long id) {
-        Optional<Report> optional=reportRepository.findById(id);
-        Report report=null;
-        if (optional.isPresent()){
-            report=optional.get();
-        }
-        else{
-            throw new RuntimeException("Employee not found for id :: "+id);
+        Optional<Report> optional = reportRepository.findById(id);
+        Report report = null;
+        if (optional.isPresent()) {
+            report = optional.get();
+        } else {
+            throw new RuntimeException("Employee not found for id :: " + id);
         }
         return report;
     }
 
-
     @Override
     public void deleteReportById(long id) {
-      this.reportRepository.deleteReportById(id);
+        this.reportRepository.deleteReportById(id);
     }
 }

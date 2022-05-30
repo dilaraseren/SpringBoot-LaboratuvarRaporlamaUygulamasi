@@ -9,4 +9,6 @@ public interface PatientService {
     void savePatients(Patient patient);
     Patient getPatientById(long id);
     void deletePatientById(long id);
+    /*List<Patient> searchPatient(String name,String surname,String nationalIdentity,String keyword);*/
+
 }

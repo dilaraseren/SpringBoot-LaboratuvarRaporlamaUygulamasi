@@ -5,7 +5,7 @@ import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Report;
 
 public class ReportMapperManager {
 
-    public static Report mapReportDtoToReportObject(ReportUpdateDto reportDto, Report report) {
+   /* public static Report mapReportDtoToReportObject(ReportUpdateDto reportDto, Report report) {
 
         report.setReportDate(reportDto.getReportDate());
         report.setFolderPath(reportDto.getFolderPath());
@@ -23,5 +23,5 @@ public class ReportMapperManager {
         reportDto.setLaborantId(report.getLaborant().getId());
         reportDto.setPatientId(report.getPatient().getId());
         return  reportDto;
-    }
+    }*/
 }

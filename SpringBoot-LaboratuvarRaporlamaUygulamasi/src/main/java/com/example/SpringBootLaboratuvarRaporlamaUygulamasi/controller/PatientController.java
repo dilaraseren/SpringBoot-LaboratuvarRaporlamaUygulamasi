@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class PatientController {
 
@@ -46,4 +48,16 @@ public class PatientController {
         return "redirect:/patient";
 
     }
+
+  /*  @PostMapping("/search")
+    public List<Patient> search(@RequestParam(value = "search")Patient patient,Model model,String keyword){
+        if(keyword!=null) {
+            List<Patient> list = patientService.searchPatient(patient.getName(), patient.getSurname(), patient.getNationalIdentity(), keyword);
+            model.addAttribute("list", list);
+        }else {
+            List<Patient> list = patientService.getAllPatients();
+            model.addAttribute("list", list);}
+        return null;
+    }*/
+
 }

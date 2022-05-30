@@ -43,4 +43,18 @@ public class PatientManager implements PatientService {
         this.patientRepository.deletePatientById(id);
     }
 
+    /*@Override
+    public List<Patient> searchPatient(String name,String surname,String nationalIdentity,String keyword) {
+        return patientRepository.search(name,surname,nationalIdentity,keyword);
+    }*/
+
+    /*@Override
+    public List<Patient> searchPatient(Patient patient) {
+        String name=patient.getName();
+        String surname=patient.getSurname();
+        String nationalIdentity=patient.getNationalIdentity();
+        List<Patient> SearchApplicant=patientRepository.search(name,surname,nationalIdentity);
+        return SearchApplicant;
+    }*/
+
 }

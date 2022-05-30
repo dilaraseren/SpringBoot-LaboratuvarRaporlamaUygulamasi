@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -40,15 +37,17 @@ public class ReportController {
     }
 
     @PostMapping("/saveReport")
-    public String saveReport(@ModelAttribute("report") ReportDto reportDto){
-        reportService.saveReports(reportDto);
-        return "redirect:/report";
+    public Report saveReport(@RequestBody Report report){
+       return reportService.saveReports(report);
+
     }
 
-    @GetMapping("/update/{id}")
+
+
+   /* @GetMapping("/update/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Report report = reportService.getReportById(id);
-        model.addAttribute("reportDto", ReportMapperManager.mapReportToReportObject(report));
+        model.addAttribute("report", ReportMapperManager.mapReportToReportObject(report));
         return "update-report";
     }
     @PostMapping("/update/{id}")
@@ -57,7 +56,7 @@ public class ReportController {
         Report report = reportService.getReportById(id);
         reportRepository.save(ReportMapperManager.mapReportDtoToReportObject(reportDto,report));
         return "report";
-    }
+    }*/
 
     @GetMapping("deleteReportById")
     public String deleteReportById(@PathVariable("reportid") long reportId){

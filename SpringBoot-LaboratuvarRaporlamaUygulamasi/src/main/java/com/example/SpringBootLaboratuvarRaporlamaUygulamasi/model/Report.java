@@ -26,28 +26,22 @@ public class Report {
     private boolean isActive;
 
     @Column(name = "report_date")
-    private Date reportDate;
+    private String reportDate;
 
     @Column(name = "folder_path")
     private String folderPath;
 
     @ManyToOne
-    @JoinColumn(name = "laborantId")
     private Laborant laborant;
 
     @ManyToOne
-    @JoinColumn(name = "patientId")
     private Patient patient;
 
-    @ManyToOne
-    @JoinColumn(name = "imageId")
-    private Image image;
-
-    public Date getReportDate() {
+    public String getReportDate() {
         return reportDate;
     }
 
-    public void setReportDate(Date reportDate) {
+    public void setReportDate(String reportDate) {
         this.reportDate = reportDate;
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 public interface ReportService {
     List<Report> getAllReports();
     List<Report> listDateReport();
-    Report saveReports(ReportDto reportDto);
+    Report saveReports(Report report);
 
     Report getReportById(long id);
     void deleteReportById(long id);
