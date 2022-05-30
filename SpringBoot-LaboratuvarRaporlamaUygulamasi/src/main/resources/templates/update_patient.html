@@ -27,9 +27,15 @@
         <input type="text" th:field="*{nationalIdentity}"
                class="form-control mb-4 col-4">
 
+        <input type="text" th:field="*{birthPlace}"
+               class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{age}"
+               class="form-control mb-4 col-4">
+
         <button type="submit" class="btn btn-info col-2">UPDATE PATIENT</button>
 
-        <a th:href ="@{/}" class="btn btn-primary"> Back to Patient List</a>
+        <a th:href ="@{/patient.html}" class="btn btn-primary"> Back to Patient List</a>
     </form>
 </div>
 </body>

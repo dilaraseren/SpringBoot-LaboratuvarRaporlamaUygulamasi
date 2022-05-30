@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping("/")
     public ModelAndView login() {
-        ModelAndView mav = new ModelAndView("home");
+        ModelAndView mav = new ModelAndView("patient");
         mav.addObject("user", new User());
         return mav;
     }
@@ -30,10 +30,9 @@ public class UserController {
     @PostMapping("/login")
     public String login(@ModelAttribute("user") User user ) {
         User oauthUser = userManager.login(user.getUsername(), user.getPassword());
-        System.out.print(oauthUser);
         if(Objects.nonNull(oauthUser))
         {
-            return "redirect:/home";
+            return "redirect:/patient";
 
         } else {
             return "redirect:/login";
