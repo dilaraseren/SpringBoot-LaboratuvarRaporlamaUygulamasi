@@ -1,9 +1,10 @@
 # Laboratuvar Raporlama Uygulaması
 
-
-
+# Uygulama Tanımı
 Spring, Thymeleaf, JPA, Maven, Bootstrap teknolojilerini kullanarak basit bir laboratuvar raporlama uygulaması 
 
+
+# Proje Gereksinimleri
 * Rapor Tanımı ( Dosya numarası, Hasta Ad ve Soyad, Hasta Kimlik
 Numarası(TC), Koyulan Tanı Başlığı, Tanı Detayları, Raporun Verildiği
 Tarih, Fiziksel Rapora Ait .png/.jpg Formatında Bir Adet Fotoğraf )  + 
@@ -20,11 +21,11 @@ yapılabilmeli  +
 Beklentilerimiz:
 * Kod standartlarına uygun yazılım geliştirilmesi + 
 * Uygulamanın çalıştırılabilir hale getirilmesi için bir IDE
-kullanılması gerekmemesi 
+kullanılması gerekmemesi
 
 Bir adım öne çıkayım derseniz:
 * Birim test içermesi elbette bir artı olarak değerlendirilir.
-* Kullanıcılar sisteme kullanıcı adı/parola ile giriş yapmalı 
+* Kullanıcılar sisteme kullanıcı adı/parola ile giriş yapmalı +
 * Bir yetkilendirme mekanizması içermeli. Örneğin standart kullanıcılar
 kayıt oluşturabilsin ilişkilendirebilsin fakat silemesin. Yönetici tüm
 eylemleri gerçekleştirebilsin.
