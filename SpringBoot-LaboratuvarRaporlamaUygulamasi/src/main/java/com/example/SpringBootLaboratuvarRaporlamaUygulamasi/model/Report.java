@@ -1,6 +1,9 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -25,8 +28,17 @@ public class Report {
     @Column(name = "is_Active")
     private boolean isActive;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "report_date")
-    private String reportDate;
+    private LocalDate reportDate;
+
+    public LocalDate getReportDate() {
+        return reportDate;
+    }
+
+    public void setReportDate(LocalDate reportDate) {
+        this.reportDate = reportDate;
+    }
 
     @Column(name = "folder_path")
     private String folderPath;
@@ -37,13 +49,18 @@ public class Report {
     @ManyToOne
     private Patient patient;
 
-    public String getReportDate() {
-        return reportDate;
+    public Image getImage() {
+        return image;
     }
 
-    public void setReportDate(String reportDate) {
-        this.reportDate = reportDate;
+    public void setImage(Image image) {
+        this.image = image;
     }
+
+    @ManyToOne
+    private Image image;
+
+
 
     public boolean isActive() {
         return isActive;

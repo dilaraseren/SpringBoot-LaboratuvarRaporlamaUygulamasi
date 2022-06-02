@@ -1,11 +1,13 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.concretes;
 
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto.PatientFilterDto;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.PatientRepository;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +43,16 @@ public class PatientManager implements PatientService {
     public void deletePatientById(long id) {
 
         this.patientRepository.deletePatientById(id);
+    }
+
+    @Override
+    public List<Patient> getFilterPatient(PatientFilterDto patientFilterDto) {
+        String name = patientFilterDto.getName();
+        String surname = patientFilterDto.getSurname();
+        String nationalIdentity = patientFilterDto.getNationalIdentity();
+
+        List<Patient> patientFilter = patientRepository.findFilterPatient( name, surname,nationalIdentity);
+        return patientFilter;
     }
 
     /*@Override

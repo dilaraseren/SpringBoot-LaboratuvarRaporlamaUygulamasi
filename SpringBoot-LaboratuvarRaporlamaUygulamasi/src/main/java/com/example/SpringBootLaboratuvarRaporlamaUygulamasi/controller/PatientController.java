@@ -1,5 +1,6 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.controller;
 
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto.PatientFilterDto;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PatientController {
@@ -59,5 +61,11 @@ public class PatientController {
             model.addAttribute("list", list);}
         return null;
     }*/
+
+    @RequestMapping(value = "/filter", method = RequestMethod.POST)
+    public String getFilter(@RequestBody PatientFilterDto patientFilterDto) {
+         patientService.getFilterPatient(patientFilterDto);
+         return "patient";
+    }
 
 }
