@@ -14,7 +14,7 @@
 	<name>SpringBoot-LaboratuvarRaporlamaUygulamasi</name>
 	<description>Laboratuvar Raporlama Uygulamasi Project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>15</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
