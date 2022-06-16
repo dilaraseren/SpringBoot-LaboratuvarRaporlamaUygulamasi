@@ -1,6 +1,7 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -29,7 +30,7 @@ public class Report {
     @Column(name = "is_Active")
     private boolean isActive;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "report_date")
     private LocalDate reportDate;
 

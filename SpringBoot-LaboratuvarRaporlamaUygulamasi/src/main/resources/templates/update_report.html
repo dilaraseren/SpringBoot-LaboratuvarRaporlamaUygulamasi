@@ -27,15 +27,9 @@
         <input type="text" th:field="*{illnesDescription}"
                class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{reportDate}"
+        <input type="date"
+               th:field="*{reportDate}" placeholder="Report Date"
                class="form-control mb-4 col-4">
-
-        <input th:each="pat :${report.patient}" class="form-control mb-4 col-4">
-        <td><span th:text="${pat.name}"> </span></td>
-        </input>
-        <input th:each="pat :${report.patient}" class="form-control mb-4 col-4">
-        <td><span th:text="${pat.surname}"> </span></td>
-        </input>
 
         <button type="submit" class="btn btn-info col-2">UPDATE REPORT</button>
 

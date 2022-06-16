@@ -10,8 +10,6 @@
 </head>
 <body>
 <div class="container">
-
-
     <h2>Save Report</h2>
 
     <form action="#" th:action="@{/saveReport}" th:object="${report}"
@@ -25,16 +23,10 @@
         <input type="text" th:field="*{illnesDescription}"
                placeholder=" Report Illnes Description" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{reportDate}"
-               placeholder=" Report Date" class="form-control mb-4 col-4">
+        <input type="date"
+               th:field="*{reportDate}" placeholder="Report Date"
+               class="form-control mb-4 col-4">
 
-        <input th:each="pat :${report.patient}" class="form-control mb-4 col-4" placeholder="Patient Name">
-            <td><span th:text="${pat.name}"> </span></td>
-        </input>
-
-        <input th:each="pat :${report.patient}" class="form-control mb-4 col-4" placeholder="Patient Last Name">
-        <td><span th:text="${pat.surname}"> </span></td>
-        </input>
 
         <button type="submit" class="btn btn-info col-2">SAVE REPORT</button>
 

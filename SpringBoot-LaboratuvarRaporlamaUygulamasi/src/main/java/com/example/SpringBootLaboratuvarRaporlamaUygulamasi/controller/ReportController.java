@@ -32,11 +32,10 @@ public class ReportController {
         model.addAttribute("report",report);
         return "new_report";
     }
-
     @PostMapping("/saveReport")
-    public Report saveReport(@RequestBody Report report){
-       return reportService.saveReports(report);
-
+    public String saveReport(@ModelAttribute("report") Report report){
+        reportService.saveReports(report);
+        return "redirect:/report";
     }
 
     @GetMapping("/showFormForUpdateReport/{id}")
