@@ -1,17 +1,8 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.concretes;
 
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto.ReportDto;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Image;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Laborant;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
+
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Report;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.ImageRepository;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.LaborantRepository;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.PatientRepository;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.ReportRepository;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.ImageService;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.LaborantService;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.PatientService;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,18 +15,9 @@ public class ReportManager implements ReportService {
     @Autowired
     private ReportRepository reportRepository;
 
-    @Autowired
-    private PatientRepository patientRepository;
-
-    @Autowired
-    private LaborantRepository laborantRepository;
-
-    @Autowired
-    private ImageRepository imageRepository;
-
 
     @Override
-    public List<Report> getAllReports() {
+    public List<Report> getAllReport() {
         return this.reportRepository.findAllReport();
     }
 

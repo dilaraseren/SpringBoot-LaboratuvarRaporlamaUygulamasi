@@ -1,9 +1,9 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.controller;
 
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto.PatientFilterDto;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,7 @@ public class PatientController {
 
     @GetMapping("/patient")
     public String viewHomePage(Model model){
-        model.addAttribute("listPatients",patientService.getAllPatients());
-        return "patient";
+        return findPagePatient(1, "name", "asc", model);
     }
 
     @GetMapping("/showNewPatientForm")
@@ -50,22 +49,64 @@ public class PatientController {
         return "redirect:/patient";
 
     }
-
-  /*  @PostMapping("/search")
-    public List<Patient> search(@RequestParam(value = "search")Patient patient,Model model,String keyword){
-        if(keyword!=null) {
-            List<Patient> list = patientService.searchPatient(patient.getName(), patient.getSurname(), patient.getNationalIdentity(), keyword);
-            model.addAttribute("list", list);
-        }else {
-            List<Patient> list = patientService.getAllPatients();
-            model.addAttribute("list", list);}
-        return null;
-    }*/
-
-    @RequestMapping(value = "/filter", method = RequestMethod.POST)
-    public String getFilter(@RequestBody PatientFilterDto patientFilterDto) {
-         patientService.getFilterPatient(patientFilterDto);
-         return "patient";
+    @PostMapping("/showSearchPatient")
+    public String showSearchPatient(@ModelAttribute("search") String search, Model model) {
+        List<Patient> listPatient = patientService.getSearchPatient(search);
+        model.addAttribute("listPatients", listPatient);
+        model.addAttribute("search", search);
+        model.addAttribute("listPatientSize", listPatient.size());
+        return findPagePatient2(1, "name", "asc", search, model);
     }
 
+    @GetMapping("/pagePatient/{pageNo}")
+    public String findPagePatient(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDirection") String sortDirection, Model model) {
+
+        int pageSize = 5;
+
+        Page<Patient> page = patientService.findPage(pageNo, pageSize, sortField, sortDirection);
+        List<Patient> listPatients = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+
+        model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listPatients", listPatients);
+
+        return "patient";
+    }
+
+    @GetMapping("/pagePatientNumber/{pageNo}")
+    public String findPagePatient2(@PathVariable(value = "pageNo") int pageNo,
+                                 @RequestParam("sortField") String sortField, @RequestParam("sortDirection") String sortDirection,
+                                 @ModelAttribute("search") String search, Model model) {
+
+        int pageSize = 5;
+
+        Page<Patient> page = patientService.findPage(pageNo, pageSize, sortField, sortDirection);
+        List<Patient> listPatients = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+
+        model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listPatients", listPatients);
+
+        List<Patient> listPatient = patientService.getSearchPatient(search);
+        model.addAttribute("listPatients", listPatient);
+        model.addAttribute("search", search);
+        model.addAttribute("listPatientSize", listPatient.size());
+
+        return "search_patient";
+    }
 }

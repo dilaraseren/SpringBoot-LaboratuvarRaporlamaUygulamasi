@@ -33,10 +33,6 @@ public class Patient {
     @Column(name = "is_Active")
     private boolean isActive;
 
-   /* @JsonFormat(pattern="yyyy-MM-dd")
-    private Date startDate;*/
-
-
     public boolean isActive() {
         return isActive;
     }

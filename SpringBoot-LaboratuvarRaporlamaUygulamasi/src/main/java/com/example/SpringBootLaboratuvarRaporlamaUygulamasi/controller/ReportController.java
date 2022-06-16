@@ -1,8 +1,5 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.controller;
 
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto.ReportDto;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto.ReportUpdateDto;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.mapper.ReportMapperManager;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Report;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.ReportRepository;
@@ -25,14 +22,14 @@ public class ReportController {
 
     @GetMapping("/report")
     public String viewHomePage(Model model){
-        model.addAttribute("listReports",reportService.getAllReports());
+        model.addAttribute("listReports",reportService.getAllReport());
         return "report";
     }
 
     @GetMapping("/showNewReportForm")
     public String showNewReportForm(Model model){
-        ReportDto reportDto= new ReportDto();
-        model.addAttribute("report",reportDto);
+        Report report= new Report();
+        model.addAttribute("report",report);
         return "new_report";
     }
 
@@ -42,25 +39,22 @@ public class ReportController {
 
     }
 
+    @GetMapping("/showFormForUpdateReport/{id}")
+    public String showFormForUpdateReport(@PathVariable(value = "id") long id, Model model){
 
+        Report report= reportService.getReportById(id);
+        model.addAttribute("report",report);
+        return "update_report";
 
-   /* @GetMapping("/update/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model) {
-        Report report = reportService.getReportById(id);
-        model.addAttribute("report", ReportMapperManager.mapReportToReportObject(report));
-        return "update-report";
     }
-    @PostMapping("/update/{id}")
-    public String updateReport(@PathVariable("id") long id, @Valid ReportUpdateDto reportDto, BindingResult result, Model model) {
 
-        Report report = reportService.getReportById(id);
-        reportRepository.save(ReportMapperManager.mapReportDtoToReportObject(reportDto,report));
-        return "report";
-    }*/
 
-    @GetMapping("deleteReportById")
-    public String deleteReportById(@PathVariable("reportid") long reportId){
-        this.reportService.deleteReportById(reportId);
+    @GetMapping("/deleteReport/{id}")
+    public String deleteReport(@PathVariable(value = "id") long id){
+        this.reportService.deleteReportById(id);
         return "redirect:/report";
+
     }
+
+
 }

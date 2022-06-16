@@ -21,7 +21,7 @@ public interface ReportRepository  extends JpaRepository<Report,Long> {
             "where i.id= :id")
     void deleteReportById(long id);
 
-    @Query("SELECT u FROM Report u order by u.reportDate desc") //tarih sorgusu sıralama
+    @Query("SELECT u FROM Report u order by u.reportDate asc") //tarih sorgusu sıralama
     List<Report> listDateReport();
 
     

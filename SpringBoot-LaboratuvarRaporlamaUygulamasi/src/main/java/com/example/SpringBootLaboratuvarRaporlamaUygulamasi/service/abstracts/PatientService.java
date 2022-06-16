@@ -1,15 +1,20 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts;
 
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.dto.PatientFilterDto;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface PatientService {
-    List<Patient> getAllPatients();
+
+    List<Patient> getAllPatient();
     void savePatients(Patient patient);
     Patient getPatientById(long id);
     void deletePatientById(long id);
-    /*List<Patient> searchPatient(String name,String surname,String nationalIdentity,String keyword);*/
-    List<Patient> getFilterPatient(PatientFilterDto patientFilterDto);
+
+    List<Patient> getSearchPatient(String search);
+
+    Page<Patient> findPage(int pageNo, int pageSize, String sortField, String sortDirection);
+
+
 }

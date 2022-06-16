@@ -1,59 +1,113 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>LABSOFT</title>
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>LABSOFT</title>
+
+	<link rel="stylesheet"
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		  crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/home">LABSOFT</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/patient">PATIENT <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/laborant">LABORANT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/report">REPORT</a>
-            </li>
-        </ul>
-
-    </div>
-</nav>
 
 <div class="container my-2">
+	<form class="form-inline my-2 my-lg-0"
+		  th:action="@{/showSearchLaborant}" method="POST">
+		<input class="form-control mr-sm-4" name="search" id="search"
+			   th:value="*{search}" type="text" placeholder="Laborant Name"
+			   aria-label="Search" size="23px" required>
+		<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+	</form>
 
-    <h1>Laborant List</h1>
-    <table border="1" class="table table-striped table-responsive-md">
-        <thead>
-        <tr>
-            <th>Laborant First Name</th>
-            <th>Laborant Last Name</th>
-            <th>Laborant Hospital Number</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="laborant:${listLaborants}">
-            <td th:text="${laborant.name}"></td>
-            <td th:text="${laborant.surname}"></td>
-            <td th:text="${laborant.hospitalNumber}"></td>
-            <td> <a th:href="@{/showFormForUpdateLaborant/{id}(id=${laborant.id})}" class="btn btn-primary"> Update</a></td>
-            <td> <a th:href="@{/deleteLaborant/{id}(id=${laborant.id})}" class="btn btn-danger "> Delete</a></td>
-        </tr>
-        </tbody>
-    </table>
-    <a th:href="@{/showNewLaborantForm}" class="btn btn-primary btn-sm mb-3"> Add Laborant </a>
+	<span th:switch="${listLaborantSize}"> <span th:case="'0'">
+				<br>
+				<center>
+					<h2>
+						<div class="alert alert-danger">
+							<i class="fas fa-exclamation-triangle"></i> <b>
+								"[[${search}]]"</b> No results found for
+						</div>
+					</h2>
+				</center>
+		</span> <span th:case="*">
+				<h3>
+					<b>"[[${search}]]"</b> Results For...
+				</h3>
+
+				<h1>Laborant List</h1>
+		<a th:href="@{/showNewPatientForm}"
+										 class="btn btn-outline-success btn-sm mb-3">New Patient</a> <a
+			th:href="@{/showNewLaborantForm}"
+			class="btn btn-outline-success btn-sm mb-3">New Laborant</a> <a
+			th:href="@{/showNewReportForm}"
+			class="btn btn-outline-success btn-sm mb-3">New Report</a> <a
+			th:href="@{/patient}" class="btn btn-outline-success btn-sm mb-3">Patient</a>
+				<a th:href="@{/report}"
+				   class="btn btn-outline-success btn-sm mb-3">Report</a>
+		<a th:href="@{/laborant}"
+		   class="btn btn-outline-success btn-sm mb-3">Laborant</a>
+
+				<table border="1" class="table table-striped table-responsive-md">
+					<thead>
+						<tr>
+							<th><a
+									th:href="@{'/pageLaborant/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Laborant
+									Name</a></th>
+							<th><a
+									th:href="@{'/pageLaborant/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Laborant
+									Surname</a></th>
+							<th><a
+									th:href="@{'/pageLaborant/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Laborant
+									Hospital Number</a></th>
+
+							<th>Actions</th>
+
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="laborant : ${listLaborants}">
+							<td th:text="${laborant.name}"></td>
+							<td th:text="${laborant.surname}"></td>
+							<td th:text="${laborant.hospitalNumber}"></td>
+
+							<td><a th:href="@{/showFormForUpdateLaborant/{id}(id=${laborant.id})}"
+								   class="btn btn-warning">Update</a>
+								<hr> <a th:href="@{/deleteLaborant/{id}(id=${laborant.id})}"
+										class="btn btn-danger">Delete</a></td>
+
+						</tr>
+					</tbody>
+
+				</table>
+
+				<div th:if="${totalPages > 1}">
+					<div class="row col-sm-10">
+						<div class="col-sm-2">Total Rows: [[${totalItems}]]</div>
+						<div class="col-sm-1">
+							<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+									th:if="${currentPage != i}"
+									th:href="@{'/pageLaborant/' + ${i}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+								<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+								&nbsp;
+							</span>
+						</div>
+						<div class="col-sm-1">
+							<a th:if="${currentPage < totalPages}"
+							   th:href="@{'/pageLaborant/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
+							<span th:unless="${currentPage < totalPages}">Next</span>
+						</div>
+
+						<div class="col-sm-1">
+							<a th:if="${currentPage < totalPages}"
+							   th:href="@{'/pageLaborant/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
+							<span th:unless="${currentPage < totalPages}">Last</span>
+						</div>
+					</div>
+				</div>
+		</span>
+		</span>
 </div>
 </body>
 </html>

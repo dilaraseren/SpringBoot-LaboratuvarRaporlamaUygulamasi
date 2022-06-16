@@ -13,14 +13,14 @@
 
 <div class="container my-2">
     <form class="form-inline my-2 my-lg-0"
-          th:action="@{/showSearchResult}" method="POST">
+          th:action="@{/showSearchLaborant}" method="POST">
         <input class="form-control mr-sm-4" name="search" id="search"
-               th:value="*{search}" type="text" placeholder="Patient Name"
+               th:value="*{search}" type="text" placeholder="Laborant Name"
                aria-label="Search" size="23px" required>
         <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
     </form>
 
-    <span th:switch="${listPatientSize}"> <span th:case="'0'">
+    <span th:switch="${listLaborantSize}"> <span th:case="'0'">
 				<br>
 				<center>
 					<h2>
@@ -35,36 +35,31 @@
 					<b>"[[${search}]]"</b> Results For...
 				</h3>
 
-				<h1>Patient List</h1> <a th:href="@{/showNewPatientForm}"
-                                             class="btn btn-outline-success btn-sm mb-3">New Patient</a> <a
+				<h1>Laborant List</h1>
+		<a th:href="@{/showNewPatientForm}"
+           class="btn btn-outline-success btn-sm mb-3">New Patient</a> <a
             th:href="@{/showNewLaborantForm}"
             class="btn btn-outline-success btn-sm mb-3">New Laborant</a> <a
             th:href="@{/showNewReportForm}"
             class="btn btn-outline-success btn-sm mb-3">New Report</a> <a
-            th:href="@{/patient}" class="btn btn-outline-success btn-sm mb-3">Patient</a>
+            th:href="@{/patient.html}" class="btn btn-outline-success btn-sm mb-3">Patient</a>
 				<a th:href="@{/report}"
                    class="btn btn-outline-success btn-sm mb-3">Report</a>
 		<a th:href="@{/laborant}"
-		   class="btn btn-outline-success btn-sm mb-3">Laborant</a>
+           class="btn btn-outline-success btn-sm mb-3">Laborant</a>
 
 				<table border="1" class="table table-striped table-responsive-md">
 					<thead>
 						<tr>
 							<th><a
-                                    th:href="@{'/pagePatient/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Patient
+                                    th:href="@{'/pageLaborant/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Laborant
 									Name</a></th>
 							<th><a
-									th:href="@{'/pagePatient/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Patient
+                                    th:href="@{'/pageLaborant/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Laborant
 									Surname</a></th>
 							<th><a
-									th:href="@{'/pagePatient/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Patient
-									National Identity</a></th>
-							<th><a
-									th:href="@{'/pagePatient/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Patient
-									Birth Place</a></th>
-							<th><a
-									th:href="@{'/pagePatient/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Patient
-									Age</a></th>
+                                    th:href="@{'/pageLaborant/'+${currentPage}+'?sortField=movieName&sortDirection='+${reverseSortDirection}}">Laborant
+									Hospital Number</a></th>
 
 							<th>Actions</th>
 
@@ -72,16 +67,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="patient : ${listPatients}">
-							<td th:text="${patient.name}"></td>
-							<td th:text="${patient.surname}"></td>
-							<td th:text="${patient.nationalIdentity}"></td>
-							<td th:text="${patient.birthPlace}"></td>
-							<td th:text="${patient.age}"></td>
+						<tr th:each="laborant : ${listLaborants}">
+							<td th:text="${laborant.name}"></td>
+							<td th:text="${laborant.surname}"></td>
+							<td th:text="${laborant.hospitalNumber}"></td>
 
-							<td><a th:href="@{/showFormForUpdate/{id}(id=${patient.id})}"
+							<td><a th:href="@{/showFormForUpdateLaborant/{id}(id=${laborant.id})}"
                                    class="btn btn-warning">Update</a>
-								<hr> <a th:href="@{/deletePatient/{id}(id=${patient.id})}"
+								<hr> <a th:href="@{/deleteLaborant/{id}(id=${laborant.id})}"
                                         class="btn btn-danger">Delete</a></td>
 
 						</tr>
@@ -95,20 +88,20 @@
 						<div class="col-sm-1">
 							<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
                                     th:if="${currentPage != i}"
-                                    th:href="@{'/pagePatient/' + ${i}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+                                    th:href="@{'/pageLaborant/' + ${i}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
 								<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
 								&nbsp;
 							</span>
 						</div>
 						<div class="col-sm-1">
 							<a th:if="${currentPage < totalPages}"
-                               th:href="@{'/pagePatient/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
+                               th:href="@{'/pageLaborant/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
 							<span th:unless="${currentPage < totalPages}">Next</span>
 						</div>
 
 						<div class="col-sm-1">
 							<a th:if="${currentPage < totalPages}"
-                               th:href="@{'/pagePatient/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
+                               th:href="@{'/pageLaborant/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
 							<span th:unless="${currentPage < totalPages}">Last</span>
 						</div>
 					</div>

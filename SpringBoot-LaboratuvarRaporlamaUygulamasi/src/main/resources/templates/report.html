@@ -3,57 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>LABSOFT</title>
+
     <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/home">LABSOFT</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/patient">PATIENT <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/laborant">LABORANT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/report">REPORT</a>
-            </li>
-        </ul>
-
-    </div>
-</nav>
 
 <div class="container my-2">
+                    <h1>Report List</h1> <a th:href="@{/showNewPatientForm}"
+                                         class="btn btn-outline-success btn-sm mb-3">New Patient</a> <a
+            th:href="@{/showNewLaborantForm}"
+            class="btn btn-outline-success btn-sm mb-3">New Laborant</a> <a
+            th:href="@{/showNewReportForm}"
+            class="btn btn-outline-success btn-sm mb-3">New Report</a> <a
+            th:href="@{/patient}" class="btn btn-outline-success btn-sm mb-3">Patient</a>
+				<a th:href="@{/report}"
+                   class="btn btn-outline-success btn-sm mb-3">Report</a>
+		<a th:href="@{/laborant}"
+           class="btn btn-outline-success btn-sm mb-3">Laborant</a>
 
-    <h1>Report List</h1>
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
-            <th>Report Number</th>
-            <th>Illnes Title</th>
-            <th>Illnes Description </th>
+            <th>Report Number </th>
+            <th>Patient Name</th>
+            <th>Patient Last Name</th>
+            <th>Patient Illnes Title </th>
+            <th>Report Illnes Description </th>
+            <th>Report Date </th>
+            <th>Report Folder </th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="report:${listReports}">
             <td th:text="${report.reportNumber}"></td>
+            <div th:each="pat :${report.patient}">
+                <td><span th:text="${pat.name}"> </span></td>
+            </div>
+            <div th:each="pat :${report.patient}">
+                <td><span th:text="${pat.surname}"> </span></td>
+            </div>
             <td th:text="${report.illnesTitle}"></td>
             <td th:text="${report.illnesDescription}"></td>
-            <td> <a th:href="@{/showUpdateForm/{id}(id=${report.id})}" class="btn btn-primary"> Update</a></td>
-            <td> <a th:href="@{/deleteReportById/{id}(id=${report.id})}" class="btn btn-danger "> Delete</a></td>
+
+            <td th:text="${report.reportDate}"></td>
+            <td> <img alt="Report" title="Report"/>
+            </a></td>
+            <td><a th:href="@{/showFormForUpdateReport/{id}(id=${report.id})}"
+                   class="btn btn-warning">Update</a>
+                <hr> <a th:href="@{/deleteReport/{id}(id=${report.id})}"
+                        class="btn btn-danger">Delete</a></td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/showNewReportForm}" class="btn btn-primary btn-sm mb-3"> Add Report </a>
+
+
 </div>
 </body>
 </html>

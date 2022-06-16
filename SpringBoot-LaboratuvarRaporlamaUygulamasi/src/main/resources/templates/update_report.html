@@ -7,36 +7,37 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
+
 </head>
 <body>
 <div class="container">
 
 
-    <h2>Save Report</h2>
+    <h2>Update Report</h2>
 
     <form action="#" th:action="@{/saveReport}" th:object="${report}"
           method="post">
+        <input type="hidden" th:field ="*{id}">
         <input type="text" th:field="*{reportNumber}"
-               placeholder="Report Number" class="form-control mb-4 col-4">
+               class="form-control mb-4 col-4">
 
         <input type="text" th:field="*{illnesTitle}"
-               placeholder="Report Illnes Title" class="form-control mb-4 col-4">
+               class="form-control mb-4 col-4">
 
         <input type="text" th:field="*{illnesDescription}"
-               placeholder=" Report Illnes Description" class="form-control mb-4 col-4">
+               class="form-control mb-4 col-4">
 
         <input type="text" th:field="*{reportDate}"
-               placeholder=" Report Date" class="form-control mb-4 col-4">
+               class="form-control mb-4 col-4">
 
-        <input th:each="pat :${report.patient}" class="form-control mb-4 col-4" placeholder="Patient Name">
-            <td><span th:text="${pat.name}"> </span></td>
+        <input th:each="pat :${report.patient}" class="form-control mb-4 col-4">
+        <td><span th:text="${pat.name}"> </span></td>
         </input>
-
-        <input th:each="pat :${report.patient}" class="form-control mb-4 col-4" placeholder="Patient Last Name">
+        <input th:each="pat :${report.patient}" class="form-control mb-4 col-4">
         <td><span th:text="${pat.surname}"> </span></td>
         </input>
 
-        <button type="submit" class="btn btn-info col-2">SAVE REPORT</button>
+        <button type="submit" class="btn btn-info col-2">UPDATE REPORT</button>
 
         <a th:href ="@{/report.html}" class="btn btn-primary"> Back to Report List</a>
     </form>

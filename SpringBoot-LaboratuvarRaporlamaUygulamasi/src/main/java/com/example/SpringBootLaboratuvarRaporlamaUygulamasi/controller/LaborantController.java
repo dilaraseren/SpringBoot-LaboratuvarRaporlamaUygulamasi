@@ -4,12 +4,12 @@ import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Laborant;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.LaborantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class LaborantController {
@@ -19,8 +19,7 @@ public class LaborantController {
 
     @GetMapping("/laborant")
     public String viewHomePage(Model model){
-        model.addAttribute("listLaborants",laborantService.getAllLaborants());
-        return "laborant";
+        return findPageLaborant(1, "name", "asc", model);
     }
 
     @GetMapping("/showNewLaborantForm")
@@ -40,7 +39,7 @@ public class LaborantController {
     public String showFormForUpdateLaborant(@PathVariable(value = "id") long id, Model model){
         Laborant laborant= laborantService.getLaborantById(id);
         model.addAttribute("laborant",laborant);
-        return "update_laborant";
+        return "update_laborant"; //burayı düzelt
 
     }
     @GetMapping("/deleteLaborant/{id}")
@@ -49,4 +48,68 @@ public class LaborantController {
         return "redirect:/laborant";
 
     }
+
+
+    @PostMapping("/showSearchLaborant")
+    public String showSearchLaborant(@ModelAttribute("search") String search, Model model) {
+        List<Laborant> listLaborant = laborantService.getSearchLaborant(search);
+        model.addAttribute("listLaborants", listLaborant);
+        model.addAttribute("search", search);
+        model.addAttribute("listLaborantSize", listLaborant.size());
+        return findPageLaborant2(1, "name", "asc", search, model);
+    }
+
+    @GetMapping("/pageLaborant/{pageNo}")
+    public String findPageLaborant(@PathVariable(value = "pageNo") int pageNo, @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDirection") String sortDirection, Model model) {
+
+        int pageSize = 5;
+
+        Page<Laborant> page = laborantService.findPage(pageNo, pageSize, sortField, sortDirection);
+        List<Laborant> listLaborants = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+
+        model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listLaborants", listLaborants);
+
+        return "laborant";
+    }
+
+    @GetMapping("/pageLaborantNumber/{pageNo}")
+    public String findPageLaborant2(@PathVariable(value = "pageNo") int pageNo,
+                                 @RequestParam("sortField") String sortField, @RequestParam("sortDirection") String sortDirection,
+                                 @ModelAttribute("search") String search, Model model) {
+
+        int pageSize = 5;
+
+        Page<Laborant> page = laborantService.findPage(pageNo, pageSize, sortField, sortDirection);
+        List<Laborant> listLaborants = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+
+        model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listLaborants", listLaborants);
+
+        List<Laborant> listLaborant = laborantService.getSearchLaborant(search);
+        model.addAttribute("listLaborants", listLaborant);
+        model.addAttribute("search", search);
+        model.addAttribute("listLaborantSize", listLaborant.size());
+
+        return "search_laborant";
+    }
+
+
 }

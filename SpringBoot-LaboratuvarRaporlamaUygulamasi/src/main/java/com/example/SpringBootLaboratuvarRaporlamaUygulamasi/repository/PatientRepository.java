@@ -8,13 +8,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+
 import java.util.List;
+
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient,Long> {
     @Query("SELECT u FROM Patient u WHERE u.isActive = false")
-    List<Patient> findAllPatient();
+    List<Patient> findAllPatients();
 
     @Modifying
     @Transactional
@@ -22,18 +23,9 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     "where i.id= :id")
     void deletePatientById(long id);
 
-  /*  //search
-    @Query(value = "select * from patient s where s.name like %:keyword% or s.surname like %:keyword% or s.nationalIdentity like %:keyword%", nativeQuery = true)
-    List<Patient> search(String name, String  surname, String  nationalIdentity,String keyword);*/
+    @Query(value = "SELECT * FROM patients m WHERE m.name LIKE %:keyword% ", nativeQuery = true)
+    List<Patient> findPatientByKeyword(@Param("keyword") String keyword);
 
-    @Query(value = "SELECT i FROM Patient i WHERE " +
-            " (:name is null or i.name like concat ( :name,'%') ) AND" +
-            " (:surname is null or i.surname LIKE concat ( :surname,'%')) AND " +
-            " (:nationalIdentity is null or i.nationalIdentity LIKE concat ( :nationalIdentity,'%'))")
-    List<Patient>findFilterPatient(
-            String name,
-            String surname ,
-            String nationalIdentity
-    );
+
 
 }

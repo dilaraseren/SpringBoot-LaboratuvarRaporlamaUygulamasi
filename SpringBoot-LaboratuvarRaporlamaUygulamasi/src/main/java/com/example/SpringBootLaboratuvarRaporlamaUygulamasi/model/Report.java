@@ -3,6 +3,7 @@ package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
@@ -40,27 +41,14 @@ public class Report {
         this.reportDate = reportDate;
     }
 
-    @Column(name = "folder_path")
-    private String folderPath;
+    @Column(name = "media")
+    private String media;
 
     @ManyToOne
     private Laborant laborant;
 
     @ManyToOne
     private Patient patient;
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    @ManyToOne
-    private Image image;
-
-
 
     public boolean isActive() {
         return isActive;
@@ -118,13 +106,7 @@ public class Report {
         this.illnesDescription = illnesDescription;
     }
 
-    public String getFolderPath() {
-        return folderPath;
-    }
 
-    public void setFolderPath(String folderPath) {
-        this.folderPath = folderPath;
-    }
 
 
 
