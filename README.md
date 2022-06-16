@@ -24,7 +24,7 @@ Beklentilerimiz:
 kullanılması gerekmemesi
 
 Bir adım öne çıkayım derseniz:
-* Birim test içermesi elbette bir artı olarak değerlendirilir.
+* Birim test içermesi elbette bir artı olarak değerlendirilir. +
 * Kullanıcılar sisteme kullanıcı adı/parola ile giriş yapmalı +
 * Bir yetkilendirme mekanizması içermeli. Örneğin standart kullanıcılar
 kayıt oluşturabilsin ilişkilendirebilsin fakat silemesin. Yönetici tüm
