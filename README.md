@@ -25,7 +25,7 @@ kullanılması gerekmemesi
 
 Bir adım öne çıkayım derseniz:
 * Birim test içermesi elbette bir artı olarak değerlendirilir. +
-* Kullanıcılar sisteme kullanıcı adı/parola ile giriş yapmalı +
+* Kullanıcılar sisteme kullanıcı adı/parola ile giriş yapmalı + (kullanıcı adı: labsoft şifre:12345 )
 * Bir yetkilendirme mekanizması içermeli. Örneğin standart kullanıcılar
 kayıt oluşturabilsin ilişkilendirebilsin fakat silemesin. Yönetici tüm
 eylemleri gerçekleştirebilsin.
