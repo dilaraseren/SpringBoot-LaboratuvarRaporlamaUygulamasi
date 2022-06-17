@@ -1,45 +1,38 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.controller;
 
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.User;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.concretes.UserManager;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Objects;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/")
 public class UserController {
-
     @Autowired
-    private UserManager userManager;
+    private UserRepository userRepository;
 
-
-    @GetMapping("/")
-    public ModelAndView login() {
-        ModelAndView mav = new ModelAndView("login");
-        mav.addObject("user", new User());
-        return mav;
+    @GetMapping("")
+    public String viewHomePage() {
+        return "index";
     }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute("user") User user ) {
-        User oauthUser = userManager.login(user.getUsername(), user.getPassword());
-        if(Objects.nonNull(oauthUser))
-        {
-            return "redirect:/patient";
-
-        } else {
-            return "redirect:/login";
-        }
-
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
+        return "signup_form";
     }
 
+    @PostMapping("/process_register")
+    public String processRegister(User user) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
 
+        userRepository.save(user);
 
+        return "register_success";
+    }
 }
