@@ -1,7 +1,7 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.controller;
 
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.PatientService;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PatientController {

@@ -1,8 +1,7 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.controller;
 
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Laborant;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Patient;
-import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.abstracts.LaborantService;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.LaborantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
