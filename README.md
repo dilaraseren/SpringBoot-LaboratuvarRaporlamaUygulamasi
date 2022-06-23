@@ -6,6 +6,7 @@
 * JPA
 * Maven
 * Bootstrap
+* Lombok
 * PostgreSQL
 
 * Proje kurulumu için aşağıdaki gerekli adımları sırayla uygulamanız gerekmektedir.
