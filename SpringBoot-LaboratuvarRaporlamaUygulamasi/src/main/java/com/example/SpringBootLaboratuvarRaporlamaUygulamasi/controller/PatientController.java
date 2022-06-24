@@ -18,6 +18,7 @@ public class PatientController {
 
     @GetMapping("/patient")
     public String viewHomePage(Model model){
+        patientService.getAllPatient();
         return findPagePatient(1, "name", "asc", model);
     }
 
@@ -46,8 +47,9 @@ public class PatientController {
     public String deletePatient(@PathVariable(value = "id") long id){
         this.patientService.deletePatientById(id);
         return "redirect:/patient";
-
     }
+
+
     @PostMapping("/showSearchPatient")
     public String showSearchPatient(@ModelAttribute("search") String search, Model model) {
         List<Patient> listPatient = patientService.getSearchPatient(search);

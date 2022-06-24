@@ -15,10 +15,10 @@ public class ReportService  {
     private ReportRepository reportRepository;
 
 
-
+/*
     public List<Report> getAllReport() {
         return this.reportRepository.findAllReport();
-    }
+    }*/
 
 
     public List<Report> listDateReport() {

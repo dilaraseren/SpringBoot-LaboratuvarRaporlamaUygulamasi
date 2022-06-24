@@ -18,7 +18,7 @@ public class ReportController {
 
     @GetMapping("/report")
     public String viewHomePage(Model model){
-        model.addAttribute("listReports",reportService.getAllReport());
+        model.addAttribute("listReports",reportService.listDateReport());
         return "report";
     }
 
@@ -48,7 +48,6 @@ public class ReportController {
     public String deleteReport(@PathVariable(value = "id") long id){
         this.reportService.deleteReportById(id);
         return "redirect:/report";
-
     }
 
 

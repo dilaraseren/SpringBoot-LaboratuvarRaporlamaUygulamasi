@@ -1,6 +1,7 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.controller;
 
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model.Laborant;
+import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.repository.LaborantRepository;
 import com.example.SpringBootLaboratuvarRaporlamaUygulamasi.service.LaborantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,9 +17,13 @@ public class LaborantController {
     @Autowired
     private LaborantService laborantService;
 
+
+
     @GetMapping("/laborant")
     public String viewHomePage(Model model){
+        laborantService.getAllLaborant();
         return findPageLaborant(1, "name", "asc", model);
+
     }
 
     @GetMapping("/showNewLaborantForm")

@@ -12,8 +12,8 @@ import java.util.List;
 
 @Repository
 public interface ReportRepository  extends JpaRepository<Report,Long> {
-    @Query("SELECT u FROM Report u WHERE u.isActive = false")
-    List<Report> findAllReport();
+   /* @Query("SELECT u FROM Report u WHERE u.isActive = false")
+    List<Report> findAllReport();*/
 
     @Modifying
     @Transactional
@@ -21,7 +21,7 @@ public interface ReportRepository  extends JpaRepository<Report,Long> {
             "where i.id= :id")
     void deleteReportById(long id);
 
-    @Query("SELECT u FROM Report u order by u.reportDate asc") //tarih sorgusu sıralama
+    @Query("SELECT u FROM Report u where u.isActive= false order by u.reportDate asc") //tarih sorgusu sıralama
     List<Report> listDateReport();
 
     

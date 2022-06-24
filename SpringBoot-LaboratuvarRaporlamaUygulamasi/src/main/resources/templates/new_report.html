@@ -23,9 +23,23 @@
         <input type="text" th:field="*{illnesDescription}"
                placeholder=" Report Illnes Description" class="form-control mb-4 col-4">
 
+      <!--  <input type="text"
+               th:field="*{patient.name}" placeholder="Patient Name"
+               class="form-control mb-4 col-4">
+        <input type="text"
+               th:field="*{patient.surname}" placeholder="Patient Surname"
+               class="form-control mb-4 col-4">-->
         <input type="date"
                th:field="*{reportDate}" placeholder="Report Date"
                class="form-control mb-4 col-4">
+       <!-- <select
+                class="form-control" required="required" th:value="${report.patient}"
+                name="patient" id="patient">
+            <option th:each="pat : ${patient}" th:value="${pat.id}"
+                    th:text="${pat.name}"></option>
+        </select>-->
+        <hr>
+
 
 
         <button type="submit" class="btn btn-info col-2">SAVE REPORT</button>
