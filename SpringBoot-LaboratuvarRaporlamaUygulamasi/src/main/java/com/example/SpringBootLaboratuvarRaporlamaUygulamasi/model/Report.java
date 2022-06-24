@@ -1,6 +1,8 @@
 package com.example.SpringBootLaboratuvarRaporlamaUygulamasi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -12,6 +14,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "reports")
+@Getter
+@Setter
 public class Report {
 
     @Id
@@ -34,14 +38,6 @@ public class Report {
     @Column(name = "report_date")
     private LocalDate reportDate;
 
-    public LocalDate getReportDate() {
-        return reportDate;
-    }
-
-    public void setReportDate(LocalDate reportDate) {
-        this.reportDate = reportDate;
-    }
-
     @Column(name = "media")
     private String media;
 
@@ -50,65 +46,6 @@ public class Report {
 
     @ManyToOne
     private Patient patient;
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public Laborant getLaborant() {
-        return laborant;
-    }
-
-    public void setLaborant(Laborant laborant) {
-        this.laborant = laborant;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getReportNumber() {
-        return reportNumber;
-    }
-
-    public void setReportNumber(Long reportNumber) {
-        this.reportNumber = reportNumber;
-    }
-
-    public String getIllnesTitle() {
-        return illnesTitle;
-    }
-
-    public void setIllnesTitle(String illnesTitle) {
-        this.illnesTitle = illnesTitle;
-    }
-
-    public String getIllnesDescription() {
-        return illnesDescription;
-    }
-
-    public void setIllnesDescription(String illnesDescription) {
-        this.illnesDescription = illnesDescription;
-    }
-
-
-
 
 
 

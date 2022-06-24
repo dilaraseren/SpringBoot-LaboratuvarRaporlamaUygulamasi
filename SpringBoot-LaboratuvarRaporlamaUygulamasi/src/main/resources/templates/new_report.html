@@ -17,6 +17,18 @@
         <input type="text" th:field="*{reportNumber}"
                placeholder="Report Number" class="form-control mb-4 col-4">
 
+        <select  multiple id="patients" name="patients">
+            <div th:each="patient:${Patients}">
+                <option  th:text="${patient.getName()}" th:value="${patient.getId()}">uıgbujhn</option>
+            </div>
+        </select>
+
+        <select  multiple id="patients" name="patients">
+            <div th:each="patient:${Patients}">
+                <option  th:text="${patient.getSurname()}" th:value="${patient.getId()}">uıgbujhn</option>
+            </div>
+        </select>
+
         <input type="text" th:field="*{illnesTitle}"
                placeholder="Report Illnes Title" class="form-control mb-4 col-4">
 
@@ -32,6 +44,8 @@
         <input type="date"
                th:field="*{reportDate}" placeholder="Report Date"
                class="form-control mb-4 col-4">
+
+
        <!-- <select
                 class="form-control" required="required" th:value="${report.patient}"
                 name="patient" id="patient">
